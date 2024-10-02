@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        background-color: #1c1c1c; /* Dunkles Star Wars-Farbschema */
+        color: #00ccff; /* Helle, cyan-farbene Schrift */
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+        position: relative;
+      }
+      h2 {
+        color: #00ccff; /* Helle Schrift für den Titel */
+        text-align: center;
+        font-family: 'Orbitron', sans-serif; /* Futuristische Schriftart */
+        font-size: 28px; /* Größerer Titel */
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        color: #00ccff;
+        font-size: 16px; /* Größerer Text für Labels */
+      }
+      input, select {
+        width: 100%;
+        padding: 12px; /* Größere Eingabefelder */
+        margin-top: 5px;
+        background-color: #333; /* Dunkler Hintergrund für Inputfelder */
+        border: 1px solid #555; /* Leicht kontrastierender Rahmen */
+        color: #00ccff;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px; /* Größere Schrift für Eingabefelder */
+      }
+      button {
+        background-color: #00ccff;
+        color: black;
+        padding: 15px 20px; /* Größerer Button */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 18px; /* Größere Schrift für den Button */
+        width: 100%;
+        font-family: 'Orbitron', sans-serif;
+      }
+      button:hover {
+        background-color: #008fb3; /* Button Hover-Effekt */
+      }
+      .form-container {
+        max-width: 600px; /* Größerer Formular-Container */
+        margin: 0 auto;
+        padding: 30px; /* Mehr Platz im Formular */
+        background-color: #1a1a1a;
+        border: 2px solid #00ccff;
+        border-radius: 10px;
+        position: relative;
+      }
+      .logo {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 80px; /* Größe des Bildes */
+        height: 80px;
+      }
+      .rp-chars-list {
+        margin-top: 10px; /* Abstand nach oben */
+        padding: 10px;
+        background-color: #222;
+        border-radius: 10px;
+        border: 1px solid #00ccff;
+        color: #00ccff;
+        display: none; /* Anfangs unsichtbar */
+      }
+      .rp-chars-list ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .rp-chars-list li {
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="form-container">
+      <img src="https://i.imgur.com/4KMKhzz.png" alt="Logo" class="logo">
+
+      <h2>Server Reservierung</h2>
+      
+      <label for="eventDate">Wann möchtest du das Event machen?</label>
+      <input type="date" id="eventDate" name="eventDate"><br><br>
+
+      <label for="serverDuration">Wie lange brauchst du den Server?</label>
+      <input type="text" id="serverDuration" name="serverDuration"><br><br>
+
+      <label for="eventLeader">Wer ist der Eventleiter?</label>
+      <input type="text" id="eventLeader" name="eventLeader"><br><br>
+
+      <label for="serverType">Welchen Server benötigst du?</label>
+      <select id="serverType" name="serverType">
+        <option value="Hauptserver">Hauptserver</option>
+        <option value="Eventserver">Eventserver</option>
+        <option value="Bauserver">Bauserver</option>
+      </select><br><br>
+
+      <label for="unitsComing">Welche Einheiten kommen mit?</label>
+      <input type="text" id="unitsComing" name="unitsComing"><br><br>
+
+      <label for="rpChatReserve">Möchtest du einen RP-Char reservieren?</label>
+      <select id="rpChatReserve" name="rpChatReserve" onchange="toggleRPCharOptions()">
+        <option value="Nein">Nein</option>
+        <option value="Ja">Ja</option>
+      </select><br><br>
+
+      <div id="rpCharOptions" style="display:none;">
+        <label for="rpChar">Welchen RP-Char möchtest du reservieren?</label>
+        <select id="rpChar" name="rpChar">
+          <option value="Clone Intelligence Unit [N-ARCs]">Clone Intelligence Unit [N-ARCs]</option>
+          <option value="Covert Ops">Covert Ops</option>
+          <option value="Kanzler Palpatine">Kanzler Palpatine</option>
+          <option value="HK-Droide">HK-Droide</option>
+          <option value="Machtgeist">Machtgeist</option>
+          <option value="Republic Commando">Republic Commando</option>
+          <option value="Admiral Trench">Admiral Trench</option>
+          <option value="Asajj Ventress">Asajj Ventress</option>
+          <option value="Bad Batch">Bad Batch</option>
+          <option value="Bo-Katan Kryze">Bo-Katan Kryze</option>
+          <option value="Boba Fett">Boba Fett</option>
+          <option value="Bric">Bric</option>
+          <option value="Cad Bane">Cad Bane</option>
+          <option value="Chewbacca">Chewbacca</option>
+          <option value="Count Dooku">Count Dooku</option>
+          <option value="Daka">Daka</option>
+          <option value="Darth Maul">Darth Maul</option>
+          <option value="Death Watch">Death Watch</option>
+          <option value="Durge">Durge</option>
+          <option value="El-Les">El-Les</option>
+          <option value="Hondo Ohnaka">Hondo Ohnaka</option>
+          <option value="Lux Bonteri">Lux Bonteri</option>
+          <option value="Nute Gunray">Nute Gunray</option>
+          <option value="Pre Vizsla">Pre Vizsla</option>
+          <option value="Mutter Talzin">Mutter Talzin</option>
+          <option value="Nachtschwestern">Nachtschwestern</option>
+          <option value="Savage Opress">Savage Opress</option>
+          <option value="Satine Kryze">Satine Kryze</option>
+          <option value="Saw Gererra">Saw Gererra</option>
+          <option value="Poggel der Geringere">Poggel der Geringere</option>
+          <option value="Steela Gererra">Steela Gererra</option>
+          <option value="General Grievous">General Grievous</option>
+          <option value="Wat Tambor">Wat Tambor</option>
+        </select><br><br>
+      </div>
+
+      <div class="rp-chars-list" id="rpCharsList">
+        <h3>Reservierte RP-Chars | Event</h3>
+        <ul id="rpCharEntries"></ul>
+      </div>
+
+      <button onclick="submitForm()">Antworten speichern</button>
+    </div>
+
+    <script>
+      let reservedChars = {}; // Speichert die reservierten Chars und das Datum
+
+      // Lädt die Reservierungen aus dem localStorage
+      function loadReservedChars() {
+        const storedChars = JSON.parse(localStorage.getItem('reservedChars')) || {};
+        const today = new Date();
+        for (const char in storedChars) {
+          const reservedDate = new Date(storedChars[char]);
+          if (reservedDate >= today) {
+            reservedChars[char] = storedChars[char]; // Füge nur gültige Reservierungen hinzu
+          }
+        }
+        updateReservedCharList(); // Aktualisiere die Anzeige
+      }
+
+      function toggleRPCharOptions() {
+        const rpChatReserve = document.getElementById('rpChatReserve').value;
+        const rpCharOptions = document.getElementById('rpCharOptions');
+        const rpCharsList = document.getElementById('rpCharsList');
+        
+        // Anzeige der RP-Char-Optionen und der Liste
+        if (rpChatReserve === 'Ja') {
+          rpCharOptions.style.display = 'block';
+          rpCharsList.style.display = 'block'; // Zeige die Liste an, wenn "Ja" ausgewählt ist
+        } else {
+          rpCharOptions.style.display = 'none';
+          rpCharsList.style.display = 'none'; // Verstecke die Liste, wenn "Nein" ausgewählt ist
+          reservedChars = {}; // Leere die reservierten Chars
+          updateReservedCharList(); // Aktualisiere die Liste
+        }
+      }
+
+      function submitForm() {
+        var eventDate = document.getElementById('eventDate').value;
+        var rpChar = document.getElementById('rpChar').value;
+
+        if (document.getElementById('rpChatReserve').value === 'Ja' && rpChar) {
+          reservedChars[rpChar] = eventDate; // Speichern der Reservierung
+          localStorage.setItem('reservedChars', JSON.stringify(reservedChars)); // Speichern in localStorage
+        }
+
+        updateReservedCharList(); // Aktualisiere die Anzeige
+      }
+
+      function updateReservedCharList() {
+        const rpCharEntries = document.getElementById('rpCharEntries');
+        rpCharEntries.innerHTML = ''; // Leere die Liste
+
+        for (const char in reservedChars) {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${char} | ${reservedChars[char]}`;
+          rpCharEntries.appendChild(listItem);
+        }
+
+        // Zeige die Liste an, wenn es Einträge gibt
+        const rpCharsList = document.getElementById('rpCharsList');
+        rpCharsList.style.display = (rpCharEntries.children.length > 0) ? 'block' : 'none';
+      }
+
+      // Lade die reservierten Chars, wenn die Seite geladen wird
+      window.onload = loadReservedChars;
+    </script>
+  </body>
+</html>
